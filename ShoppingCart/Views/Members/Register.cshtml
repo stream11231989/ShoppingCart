@@ -1,0 +1,74 @@
+﻿@model ShoppingCart.ViewModels.MembersRegisterViewModel
+
+@{
+    ViewBag.Title = "註冊";
+}
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    
+    }
+
+<h2>註冊</h2>
+
+@using (Html.BeginForm()) 
+{
+    @Html.ValidationSummary(true)
+    
+   <table>
+       <tr>
+           <td>
+               @Html.LabelFor(m=>m.newMember.Account)
+           </td>
+           <td>
+               @Html.TextBoxFor(m=>m.newMember.Account)
+               @Html.ValidationMessageFor(m=>m.newMember.Account)
+           </td>
+       </tr>
+       <tr>
+           <td>
+               @Html.LabelFor(m=>m.newMember.Password)
+           </td>
+           <td>
+               @Html.PasswordFor(m=>m.Password)
+               @Html.ValidationMessageFor(m=>m.Password)
+           </td>
+       </tr>
+       <tr>
+           <td>
+               @Html.LabelFor(m=>m.PasswordCheck)
+           </td>
+           <td>
+               @Html.PasswordFor(m=>m.PasswordCheck)
+               @Html.ValidationMessageFor(m=>m.PasswordCheck)
+           </td>
+       </tr>
+       <tr>
+           <td>
+               @Html.LabelFor(m=>m.newMember.Name)
+           </td>
+           <td>
+               @Html.TextBoxFor(m=>m.newMember.Name)
+               @Html.ValidationMessageFor(m=>m.newMember.Name)
+           </td>
+       </tr>
+       <tr>
+           <td>
+               @Html.LabelFor(m=>m.newMember.Email)
+           </td>
+           <td>
+               @Html.TextBoxFor(m=>m.newMember.Email)
+               @Html.ValidationMessageFor(m=>m.newMember.Email)
+           </td>
+       </tr>
+       <tr>
+           <td colspan="2">
+               <input type="submit" value="註冊" />
+           </td>
+       </tr>
+   </table>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

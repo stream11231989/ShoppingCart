@@ -45,10 +45,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="jose-jwt, Version=4.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\jose-jwt.4.0.1\lib\net472\jose-jwt.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -121,6 +125,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -129,6 +134,8 @@
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Members.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\JwtObject.cs" />
+    <Compile Include="Security\JwtService.cs" />
     <Compile Include="Services\MailService.cs" />
     <Compile Include="Services\MembersDBService.cs" />
     <Compile Include="ViewModels\MembersChangePasswordViewModel.cs" />
@@ -157,6 +164,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Shared\RegisterEmailTemplate.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -171,7 +179,11 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Shared\RegisterEmailTemplate.cshtml" />
+    <Content Include="Views\Members\Login.cshtml" />
+    <Content Include="Views\Members\Register.cshtml" />
+    <Content Include="Views\Members\RegisterResult.cshtml" />
+    <Content Include="Views\Members\ChangePassword.cshtml" />
+    <Content Include="Views\Members\EmailValidate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

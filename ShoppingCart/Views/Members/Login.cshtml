@@ -1,0 +1,52 @@
+﻿@model ShoppingCart.ViewModels.MembersLoginViewModel
+
+@{
+    ViewBag.Title = "登入";
+}
+@section scripts
+    {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    }
+
+
+
+<h2>登入</h2>
+
+@using (Html.BeginForm()) 
+{
+   @*建立登入畫面用的表格*@
+
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Account)
+            </td>
+            <td>
+                @Html.TextBoxFor(m => m.Account)
+                @Html.ValidationMessageFor(m => m.Account)
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m => m.Password)
+            </td>
+            <td>
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.ValidationSummary()
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="登入" />
+                @Html.ActionLink("去註冊","Register")
+            </td>
+        </tr>
+    </table>
+}

@@ -10,7 +10,7 @@ namespace ShoppingCart.ViewModels
 {
     public class MembersRegisterViewModel
     {
-        public Members NewMember { get; set; }
+        public Members newMember { get; set; }
 
         [DisplayName("密碼")]
         [Required(ErrorMessage ="請輸入密碼")]

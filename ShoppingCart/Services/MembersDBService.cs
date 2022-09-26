@@ -214,6 +214,47 @@ namespace ShoppingCart.Services
 
         #endregion
 
+        #region 變更密碼
+        public string ChangePassword(string Account,string Password,string newPassword)
+        {
+            //取得會員傳入的資料
+            Members LoginMember = GetDataByAccount(Account);
+            //確認舊密碼的正確性
+            if (PasswordCheck(LoginMember, Password))
+            {
+                //將新的密碼HASH後寫入資料庫中
+                LoginMember.Password = HashPassword(newPassword);
+                //sql修改語法
+
+                string sql = $@" update Members set Password = '{LoginMember.Password}' where Account = '{Account}' ";
+                try
+                {
+                    //開啟資料庫
+                    conn.Open();
+                    //執行sql指令
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.ExecuteNonQuery();
+                }
+                catch (Exception e)
+                {
+                    throw new Exception(e.Message.ToString());
+                }
+                finally
+                {
+                    conn.Close();
+                }
+                return "密碼修改成功";
+            
+
+            }
+            else
+            {
+                return "舊密碼輸入錯誤";
+            }
+        }
+
+        #endregion
+
         #region 取得腳色
         //取得會員的權限腳色資料
         public string GetRole(string Account)

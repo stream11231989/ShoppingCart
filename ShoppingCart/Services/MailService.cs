@@ -8,9 +8,9 @@ namespace ShoppingCart.Services
 {
     public class MailService
     {
-        private string gmail_account = "";
-        private string gmail_password = "";
-        private string gmail_mail = "";
+        private string gmail_account = "testforasp123@gmail.com";
+        private string gmail_password = "fpjmpplbokvnolia";
+        private string gmail_mail = "testforasp123@gmail.com";
 
         #region  寄會員驗證信
         //產生驗證碼方法

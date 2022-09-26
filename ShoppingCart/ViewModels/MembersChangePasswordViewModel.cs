@@ -19,7 +19,7 @@ namespace ShoppingCart.ViewModels
 
         [DisplayName("新密碼確認")]
         [Required(ErrorMessage ="請輸入確認密碼")]
-        [Compare("NewPasseord",ErrorMessage ="兩次密碼輸入不一樣")]
+        [Compare("NewPassword",ErrorMessage ="兩次密碼輸入不一樣")]
         public string NewPasswordCheck { get; set; }
 
 
