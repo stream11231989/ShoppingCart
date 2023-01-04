@@ -1,0 +1,88 @@
+﻿@model ShoppingCart.ViewModels.ItemViewModel
+
+@{
+    ViewBag.Title = "商品頁面";
+}
+
+@*匯入驗證與AJAX所需的javascript*@
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+<h2>商品項目</h2>
+<table>
+    @*判斷是否有資料傳入*@
+    @if (!Model.IdList.Count.Equals(0))
+    {
+        @*計算數列，每五個一列*@
+    int row = Convert.ToInt32(Math.Ceiling(Convert.ToDouble(Model.IdList.Count) / 5));
+    for (int r = 0; r < row; r++)
+    {
+            <tr>
+                @for (int i = 5 * r; i < (r + 1) * 5; i++)
+                {
+                    if (i < Model.IdList.Count)
+                    {
+                        <td id="ItemBlock-@(Model.IdList[i])" style="padding:20px">
+                            @Html.Partial("ItemBlock", Model.ItemBlock[i])
+                        </td>
+                    }
+                }
+            </tr>
+        }
+
+    }
+    @*若無資料顯示"尚未有商品上架"訊息*@
+    else 
+    {
+        <tr>
+            <td colspan="4">
+                尚未有商品上架
+            </td>
+        </tr>
+    }
+    <tr>
+        <td>
+            @*若頁數大於1，則顯示上衣頁與最前頁按鈕*@
+            @if (Model.Paging.NowPage > 1)
+            {
+                @Html.ActionLink("<<","Index",new {Page=1})
+                @Html.ActionLink("<","Index", new {Page = Model.Paging.NowPage-1})
+            }
+        </td>
+        <td>
+            @*顯示當前頁數前後各五頁的頁數按鈕*@
+            @for(var page = (Model.Paging.NowPage - 6); page < (Model.Paging.NowPage + 6); page++)
+            {
+                if ((page > 0) && (page <= Model.Paging.MaxPage))
+                {
+                    if (page == Model.Paging.NowPage)
+                    {
+                        <b>@page</b>
+                    }
+                    else
+                    {
+                        @Html.ActionLink(page.ToString(),"Index",new {Page=page})
+                    }
+                }
+            }
+        </td>
+        <td>
+            @*若目前所頁數不適第一頁，則顯示下一頁與最後一頁的按鈕*@
+            @if (Model.Paging.NowPage < Model.Paging.MaxPage)
+            {
+                @Html.ActionLink(">","Index",new {Page = Model.Paging.NowPage+1})
+                @Html.ActionLink(">>","Index",new {Page = Model.Paging.MaxPage})
+            }
+        </td>
+        <td></td>
+    </tr>
+</table>
+@*當使用者是管理者，產生新增商品的超連結*@
+@if(User.Identity.IsAuthenticated && User.IsInRole("Admin")) 
+{
+    <a href="@Url.Action("Create")">
+        <input type="button" value="新增商品" />
+    </a>
+}

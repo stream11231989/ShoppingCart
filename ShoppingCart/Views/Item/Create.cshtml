@@ -1,0 +1,50 @@
+﻿@model ShoppingCart.ViewModels.ItemCreateViewModel
+
+@{
+    ViewBag.Title = "新增商品";
+}
+
+@*匯入驗證所需的JavaScript*@
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+<h2>新增商品</h2>
+@*建立新增商品所需的表單*@
+@using (Html.BeginForm("Add", "Item", FormMethod.Post, new { enctype = "multipart/form-data" })) 
+{
+    @*顯示彙總驗證錯誤訊息*@
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(m=>m.NewData.Name)
+            </td>
+            <td>
+                @Html.TextBoxFor(m=>m.NewData.Name)
+                @Html.ValidationMessageFor(m=>m.NewData.Name)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m=>m.NewData.Price)
+            </td>
+            <td>
+                @Html.TextBoxFor(m=>m.NewData.Price)
+                @Html.ValidationMessageFor(m=>m.NewData.Price)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(m=>m.ItemImage)
+            </td>
+            <td>
+                @*<input type="file" name="ItemImage" id="ItemImage" />*@
+                @Html.TextBoxFor(m=>m.ItemImage, new {type="file"})
+                @Html.ValidationMessageFor(m=>m.ItemImage)
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="商品上架" />
+}
+

@@ -48,7 +48,7 @@ namespace ShoppingCart.Controllers
             //判斷驗證後的結果是否有錯誤訊息
             if (string.IsNullOrEmpty(ValidateStr))
             {
-                //無錯誤訊息，則登入
+                ////無錯誤訊息，則登入
                 ////先清空Session
                 //HttpContext.Session.Clear();
                 ////取得購物車保存
@@ -185,7 +185,7 @@ namespace ShoppingCart.Controllers
         [HttpPost]
         public ActionResult ChangePassword(MembersChangePasswordViewModel ChangeData)
         {
-            //判斷葉面是否都經過驗證
+            //判斷頁面是否都經過驗證
             if (ModelState.IsValid)
             {
                 ViewData["ChangeState"] = membersService.ChangePassword(User.Identity.Name, ChangeData.Password, ChangeData.NewPassword);
